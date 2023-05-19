@@ -96,11 +96,11 @@ public class Analyser {
 
             if (split[i].equals("0")) {
 
-              if (i + 1>split.length) {
-                  countOne=0;
-              }
+                if (i + 1 > split.length) {
+                    countOne = 0;
+                }
 
-                if (i + 1<split.length) {
+                if (i + 1 < split.length) {
                     countOne = split[i + 1].length();
 
                 }
@@ -114,12 +114,12 @@ public class Analyser {
 
             if (split[i].equals("00")) {
 
-                if (i + 1>split.length) {
+                if (i + 1 > split.length) {
                     countZero = 0;
 
                 }
 
-                if (i + 1<split.length) {
+                if (i + 1 < split.length) {
                     countZero = split[i + 1].length();
                 }
 
@@ -128,10 +128,14 @@ public class Analyser {
                 }
             }
             i++;
-
         }
+        return binary;
+    }
+
+    public static String makePlainText(String binary) {
 
         ArrayList<String> list = new ArrayList<>();
+        String returnString = "";
 
         int start = 0;
         int end = 7;
@@ -142,8 +146,6 @@ public class Analyser {
             end = start + 7;
         }
 
-        String returnString = "";
-
         StringBuilder str = new StringBuilder();
 
         for (int i = 0; i < list.size(); i++) {
@@ -152,9 +154,9 @@ public class Analyser {
             char asciiToChar = (char) charCode;
             returnString += asciiToChar;
         }
-
-
         return returnString;
-
     }
 }
+
+
+

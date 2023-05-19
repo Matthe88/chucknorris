@@ -12,49 +12,33 @@ public class CheckEncodedString {
         String[] splitCheck = encodedString.split(" ");
         String stringLength = "";
 
-        for (int i = 0; i<splitCheck.length;i++) {
-            stringLength+=splitCheck[i];
-        }
-
-
+        //Checks, if the array only consists of "0"
         for (int i = 0; i < splitCheck.length; i++) {
-
-            if (splitCheck[i].matches("[0]+")) {
-               checks.add(true);
-            } else {
+            if (!splitCheck[i].matches("[0]+")) {
                 checks.add(false);
             }
           }
 
-
-
+        //Checks, if every second index of Array is "0", or "00"
             for (int i = 0; i < splitCheck.length; i += 2) {
-                if ((splitCheck[i].equals("0") || splitCheck[i].equals("00"))) {
-                    checks.add(true);
-                } else {
+                if (!(splitCheck[i].equals("0") || splitCheck[i].equals("00"))) {
                     checks.add(false);
                 }
             }
 
-
-        if (splitCheck.length+1 % 2 != 0) {
-            checks.add(true);
-        } else {
+        //Check, if array is not equal
+        if (splitCheck.length % 2 != 0) {
             checks.add(false);
         }
 
-        String text = Analyser.decoder(encodedString);
-        int binary = Analyser.convertToBinary(text).length();
+        int binary = Analyser.decoder(encodedString).length();
 
-
-        if(binary %7 == 0 && !(text.equals(""))){
-            checks.add(true);
-        } else {
+        //Checks, if the length of the decoded binary string is a multiple of 7.
+        if(binary %7 != 0){
             checks.add(false);
         }
 
         return checks;
-
     }
 }
 
